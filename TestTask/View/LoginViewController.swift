@@ -148,18 +148,15 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print("salam")
-    }
-    
+   
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case usernameTextField:
+            usernameTextField.resignFirstResponder()
             passwordTextField.becomeFirstResponder()
         default:
-            textField.resignFirstResponder()
+            passwordTextField.resignFirstResponder()
         }
-        
         return true
     }
 }

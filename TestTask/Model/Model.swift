@@ -8,13 +8,19 @@
 
 import Foundation
 
-struct Model: Decodable {
+struct Movie: Decodable {
     var name: String?
     var realname: String?
     var team: String?
     var firstAppearance: String?
-    var createdby: String?
+    var createdBy: String?
     var publisher: String?
     var imageURL: String?
     var bio: String?
+    
+    enum CodingKeys: String, CodingKey {
+      case name, realname, team, firstAppearance = "firstappearance", createdBy = "createdby", publisher, imageURL = "imageurl", bio
+    }
 }
+
+
