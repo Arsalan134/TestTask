@@ -18,6 +18,8 @@ class ListViewController: UIViewController {
     
     lazy var tableView = UITableView()
     
+    let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,10 +29,18 @@ class ListViewController: UIViewController {
         navigationItem.title = "List"
         
         setupTableView()
+        setupSearchBar()
         
         listVM.downloadMovies { [weak self] _ in
             self?.tableView.reloadData()
         }
+    }
+    
+    func setupSearchBar() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        navigationItem.searchController = searchController
     }
     
     func setupTableView() {
@@ -69,8 +79,6 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            print("Deleted")
-            
             self.listVM.movies.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
         }
@@ -80,4 +88,10 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         return 100
     }
     
+}
+
+extension ListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        print("Salam")
+    }
 }
