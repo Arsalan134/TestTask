@@ -21,7 +21,6 @@ class ListViewModel {
                     do {
                         self.movies = try jsonDecoder.decode([Movie].self, from: data)
                         DispatchQueue.main.async {
-                            print("Downloaded")
                             completion(self.movies)
                         }
                     } catch {

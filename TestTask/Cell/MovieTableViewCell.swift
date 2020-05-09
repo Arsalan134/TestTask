@@ -12,10 +12,6 @@ class MovieTableViewCell: UITableViewCell {
     
     var movie: Movie?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
     private func setupViews() {
         setupImageView()
         setupLabels()
@@ -28,6 +24,7 @@ class MovieTableViewCell: UITableViewCell {
     private func setupImageView() {
         addSubview(movieImageView)
         
+        movieImageView.layer.cornerRadius = 5
         movieImageView.contentMode = .scaleAspectFill
         
         if let imageurl = movie?.imageURL, let url = URL(string: imageurl) {
@@ -80,7 +77,6 @@ class MovieTableViewCell: UITableViewCell {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
         l.adjustsFontSizeToFitWidth = true
-        l.backgroundColor = .green
         return l
     }()
     
@@ -88,14 +84,12 @@ class MovieTableViewCell: UITableViewCell {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
         l.adjustsFontSizeToFitWidth = true
-        l.backgroundColor = .red
         return l
     }()
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        //        backgroundColor = .yellow
+
         setupViews()
     }
     

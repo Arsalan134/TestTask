@@ -138,6 +138,8 @@ class LoginViewController: UIViewController {
         b.translatesAutoresizingMaskIntoConstraints = false
         b.setTitle("Login", for: .normal)
         b.addTarget(self, action: #selector(loginPressed), for: .touchUpInside)
+        b.setTitleColor(.label, for: .normal)
+        b.backgroundColor = .secondarySystemBackground
         return b
     }()
     

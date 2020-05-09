@@ -64,10 +64,6 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
                     }
                 }
             }
-        } else {
-            let ac = UIAlertController(title: "Touch ID is not available", message: "Your device is not configured for Touch ID.", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
-            self.navigationController.viewControllers.first?.present(ac, animated: true)
         }
         
     }
