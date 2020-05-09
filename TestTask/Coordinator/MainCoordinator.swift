@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import LocalAuthentication
 import UIKit
 
-class MainCoordinator: Coordinator {
+class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     
     var childCoordinators = [Coordinator]()
     
@@ -20,16 +21,65 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
+        navigationController.delegate = self
         let vc = LoginViewController()
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func buySubscription() {
-        let vc = ListViewController()
-        vc.coordinator = self
-        navigationController.pushViewController(vc, animated: true)
+    func childDidFinish(_ child: Coordinator?) {
+        for(index, coordinator) in childCoordinators.enumerated() {
+            if coordinator === child {
+                childCoordinators.remove(at: index)
+                break
+            }
+        }
     }
     
+    func successfullyLoggedIn() {
+        let child = ListCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        child.start()
+    }
+    
+    func loginPresed() {
+        authenticateUser()
+    }
+    
+    func authenticateUser() {
+        let context = LAContext()
+        var error: NSError?
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Identify yourself!") { [weak self] success, authenticationError in
+                
+                DispatchQueue.main.async {
+                    if success {
+                        self?.successfullyLoggedIn()
+                    } else {
+                        let ac = UIAlertController(title: "Authentication failed", message: "Sorry!", preferredStyle: .alert)
+                        ac.addAction(UIAlertAction(title: "OK", style: .default))
+                        self?.navigationController.viewControllers.first?.present(ac, animated: true)
+                    }
+                }
+            }
+        } else {
+            let ac = UIAlertController(title: "Touch ID is not available", message: "Your device is not configured for Touch ID.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            self.navigationController.viewControllers.first?.present(ac, animated: true)
+        }
+        
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        guard let fromVIewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else { return }
+        
+        if navigationController.viewControllers.contains(fromVIewController) { return }
+        
+        if let listViewController = fromVIewController as? ListViewController {
+            childDidFinish(listViewController.coordinator)
+        }
+    }
     
 }

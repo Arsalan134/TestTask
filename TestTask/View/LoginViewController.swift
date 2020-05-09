@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import LocalAuthentication
-
 
 class LoginViewController: UIViewController {
     
@@ -20,41 +18,13 @@ class LoginViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         setupView()
-        authenticateUser()
-    }
-    
-    func authenticateUser() {
-        let context = LAContext()
-        var error: NSError?
-        
-        if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
-            let reason = "Identify yourself!"
-            
-            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { [weak self] success, authenticationError in
-                
-                DispatchQueue.main.async {
-                    if success {
-                        print("Sucesssss")
-                        self?.coordinator?.buySubscription()
-                    } else {
-                        let ac = UIAlertController(title: "Authentication failed", message: "Sorry!", preferredStyle: .alert)
-                        ac.addAction(UIAlertAction(title: "OK", style: .default))
-                        self?.present(ac, animated: true)
-                    }
-                }
-            }
-        } else {
-            let ac = UIAlertController(title: "Touch ID is not available", message: "Your device is not configured for Touch ID.", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
-            present(ac, animated: true)
-        }
-        
     }
     
     func setupView() {
         setupTextFields()
         setupTouchIDView()
         setupDelegates()
+        setupLoginButton()
     }
     
     func setupTextFields() {
@@ -112,6 +82,17 @@ class LoginViewController: UIViewController {
         passwordTextField.delegate = self
     }
     
+    func setupLoginButton() {
+        view.addSubview(loginButton)
+        
+        NSLayoutConstraint.activate([
+            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            loginButton.topAnchor.constraint(equalTo: touchIDView.bottomAnchor, constant: 60),
+            loginButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
     let usernameTextField: UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
@@ -151,6 +132,18 @@ class LoginViewController: UIViewController {
         s.translatesAutoresizingMaskIntoConstraints = false
         return s
     }()
+    
+    let loginButton: UIButton = {
+        let b = UIButton()
+        b.translatesAutoresizingMaskIntoConstraints = false
+        b.setTitle("Login", for: .normal)
+        b.addTarget(self, action: #selector(loginPressed), for: .touchUpInside)
+        return b
+    }()
+    
+    @objc func loginPressed() {
+        coordinator?.loginPresed()
+    }
     
 }
 

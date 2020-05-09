@@ -17,6 +17,8 @@
 		5C6B5A0C246460D10011900C /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6B5A0B246460D10011900C /* Coordinator.swift */; };
 		5C6B5A0E246461AE0011900C /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6B5A0D246461AE0011900C /* MainCoordinator.swift */; };
 		5C6FB82D246464F200D740ED /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6FB82C246464F200D740ED /* ListViewController.swift */; };
+		5CF50C9F24669BF300534A1A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF50C9E24669BF300534A1A /* Model.swift */; };
+		5CF50CA12466A28200534A1A /* ListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF50CA02466A28200534A1A /* ListCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		5C6B5A0B246460D10011900C /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		5C6B5A0D246461AE0011900C /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		5C6FB82C246464F200D740ED /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		5CF50C9E24669BF300534A1A /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		5CF50CA02466A28200534A1A /* ListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,7 @@
 		5C01AAD32464392D00DED6F6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5CF50C9E24669BF300534A1A /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				5C6B5A0B246460D10011900C /* Coordinator.swift */,
+				5CF50CA02466A28200534A1A /* ListCoordinator.swift */,
 				5C6B5A0D246461AE0011900C /* MainCoordinator.swift */,
 			);
 			path = Coordinator;
@@ -296,6 +302,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CF50CA12466A28200534A1A /* ListCoordinator.swift in Sources */,
+				5CF50C9F24669BF300534A1A /* Model.swift in Sources */,
 				5C6B5A0C246460D10011900C /* Coordinator.swift in Sources */,
 				5C01AAA8246436E900DED6F6 /* LoginViewController.swift in Sources */,
 				5C6FB82D246464F200D740ED /* ListViewController.swift in Sources */,
