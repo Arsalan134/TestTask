@@ -23,13 +23,13 @@ class ListCoordinator: Coordinator {
     
     func start() {
         let vc = ListViewController()
-        vc.coordinator = self
+        vc.listVM.coordinator = self
         navigationController.viewControllers = [vc]
     }
     
     func logout() {
         let vc = LoginViewController()
-        vc.coordinator = parentCoordinator
+        vc.loginVM.coordinator = parentCoordinator
         navigationController.viewControllers = [vc]
     }
     

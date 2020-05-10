@@ -23,7 +23,7 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     func start() {
         navigationController.delegate = self
         let vc = LoginViewController()
-        vc.coordinator = self
+        vc.loginVM.coordinator = self
         navigationController.pushViewController(vc, animated: true)
     }
     
@@ -43,29 +43,10 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         child.start()
     }
     
-    func loginPresed() {
-        authenticateUser()
-    }
-    
-    func authenticateUser() {
-        let context = LAContext()
-        var error: NSError?
-        
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Identify yourself!") { [weak self] success, authenticationError in
-                
-                DispatchQueue.main.async {
-                    if success {
-                        self?.successfullyLoggedIn()
-                    } else {
-                        let ac = UIAlertController(title: "Authentication failed", message: "Sorry!", preferredStyle: .alert)
-                        ac.addAction(UIAlertAction(title: "OK", style: .default))
-                        self?.navigationController.viewControllers.first?.present(ac, animated: true)
-                    }
-                }
-            }
-        }
-        
+    func unsuccessfullyLoggedin() {
+        let ac = UIAlertController(title: "Authentication failed", message: "Sorry!", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        navigationController.viewControllers.first?.present(ac, animated: true)
     }
     
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
@@ -74,7 +55,7 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         if navigationController.viewControllers.contains(fromVIewController) { return }
         
         if let listViewController = fromVIewController as? ListViewController {
-            childDidFinish(listViewController.coordinator)
+            childDidFinish(listViewController.listVM.coordinator)
         }
     }
     

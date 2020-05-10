@@ -10,7 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    weak var coordinator: MainCoordinator?
+    lazy var loginVM = LoginViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,14 +20,14 @@ class LoginViewController: UIViewController {
         setupView()
     }
     
-    func setupView() {
+    private func setupView() {
         setupTextFields()
         setupTouchIDView()
         setupDelegates()
         setupLoginButton()
     }
     
-    func setupTextFields() {
+    private func setupTextFields() {
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)
         
@@ -50,9 +50,9 @@ class LoginViewController: UIViewController {
         
     }
     
-    func setupTouchIDView() {
+    private func setupTouchIDView() {
         view.addSubview(touchIDView)
-        
+
         touchIDView.addSubview(touchIDInfoLabel)
         touchIDView.addSubview(touchIDSwitch)
         
@@ -77,12 +77,12 @@ class LoginViewController: UIViewController {
         
     }
     
-    func setupDelegates() {
+    private func setupDelegates() {
         usernameTextField.delegate = self
         passwordTextField.delegate = self
     }
     
-    func setupLoginButton() {
+    private func setupLoginButton() {
         view.addSubview(loginButton)
         
         NSLayoutConstraint.activate([
@@ -93,7 +93,7 @@ class LoginViewController: UIViewController {
         ])
     }
     
-    let usernameTextField: UITextField = {
+    private let usernameTextField: UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.placeholder = "Username"
@@ -101,25 +101,24 @@ class LoginViewController: UIViewController {
         return tf
     }()
     
-    let passwordTextField: UITextField = {
+    private let passwordTextField: UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.isSecureTextEntry = true
         tf.placeholder = "Password"
         tf.clearsOnBeginEditing = true
         tf.backgroundColor = .secondarySystemBackground
-        tf.passwordRules = UITextInputPasswordRules(descriptor: "required: upper; required: lower; required: digit; max-consecutive: 2; minlength: 8;")
         return tf
     }()
     
-    let touchIDView: UIView = {
+    private let touchIDView: UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
         v.backgroundColor = .red
         return v
     }()
     
-    let touchIDInfoLabel: UILabel = {
+    private let touchIDInfoLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
         l.text = "Enable Touch ID login"
@@ -127,13 +126,13 @@ class LoginViewController: UIViewController {
         return l
     }()
     
-    let touchIDSwitch: UISwitch = {
+    private let touchIDSwitch: UISwitch = {
         let s = UISwitch()
         s.translatesAutoresizingMaskIntoConstraints = false
         return s
     }()
     
-    let loginButton: UIButton = {
+    private let loginButton: UIButton = {
         let b = UIButton()
         b.translatesAutoresizingMaskIntoConstraints = false
         b.setTitle("Login", for: .normal)
@@ -143,8 +142,8 @@ class LoginViewController: UIViewController {
         return b
     }()
     
-    @objc func loginPressed() {
-        coordinator?.loginPresed()
+    @objc private func loginPressed() {
+        loginVM.loginPressed()
     }
     
 }
@@ -163,3 +162,9 @@ extension LoginViewController: UITextFieldDelegate {
     }
 }
 
+extension LoginViewController {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        usernameTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
+}

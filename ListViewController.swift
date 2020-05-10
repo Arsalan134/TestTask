@@ -8,13 +8,12 @@
 
 import UIKit
 
+
 private let reuseIdentifier = "Cell"
 
 class ListViewController: UIViewController {
-    
-    weak var coordinator: ListCoordinator?
-    
-    lazy var listVM = ListViewModel()
+        
+    var listVM = ListViewModel()
     
     lazy var tableView = UITableView()
     
@@ -36,18 +35,21 @@ class ListViewController: UIViewController {
         }
     }
     
-    func setupSearchBar() {
+    private func setupSearchBar() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
     }
     
-    func setupTableView() {
+    private func setupTableView() {
         view.addSubview(tableView)
+        
         tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.keyboardDismissMode = .onDrag
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -59,7 +61,7 @@ class ListViewController: UIViewController {
     }
     
     @objc func logout() {
-        coordinator?.logout()
+        listVM.coordinator?.logout()
     }
     
     
@@ -92,6 +94,6 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        print("Salam")
+        //TODO:- Salam
     }
 }

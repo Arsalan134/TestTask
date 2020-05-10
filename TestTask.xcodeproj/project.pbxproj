@@ -19,6 +19,9 @@
 		5C48D0522466BC7900D2566A /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C48D0512466BC7900D2566A /* MovieTableViewCell.swift */; };
 		5C6B5A0C246460D10011900C /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6B5A0B246460D10011900C /* Coordinator.swift */; };
 		5C6B5A0E246461AE0011900C /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6B5A0D246461AE0011900C /* MainCoordinator.swift */; };
+		5C7860AE2468323700384B3D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7860AD2468323700384B3D /* LoginViewModel.swift */; };
+		5CC4B39F246810CA0093EC3B /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC4B39E246810CA0093EC3B /* KeychainWrapper.swift */; };
+		5CC4B3A12468112F0093EC3B /* KeychainAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC4B3A02468112F0093EC3B /* KeychainAccessibility.swift */; };
 		5CF50C9F24669BF300534A1A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF50C9E24669BF300534A1A /* Model.swift */; };
 		5CF50CA12466A28200534A1A /* ListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF50CA02466A28200534A1A /* ListCoordinator.swift */; };
 /* End PBXBuildFile section */
@@ -59,6 +62,9 @@
 		5C48D0512466BC7900D2566A /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		5C6B5A0B246460D10011900C /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		5C6B5A0D246461AE0011900C /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		5C7860AD2468323700384B3D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		5CC4B39E246810CA0093EC3B /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
+		5CC4B3A02468112F0093EC3B /* KeychainAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainAccessibility.swift; sourceTree = "<group>"; };
 		5CF50C9E24669BF300534A1A /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		5CF50CA02466A28200534A1A /* ListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +123,7 @@
 				5C01AAAC246436EE00DED6F6 /* Assets.xcassets */,
 				5C48D0502466BC6000D2566A /* Cell */,
 				5C6B5A0F246463C10011900C /* Coordinator */,
+				5CC4B3A22468113F0093EC3B /* Keychain */,
 				5C01AAAE246436EE00DED6F6 /* LaunchScreen.storyboard */,
 				5C01AAD32464392D00DED6F6 /* Model */,
 				5C01AAD52464393F00DED6F6 /* View */,
@@ -164,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				5C48D04A2466B05600D2566A /* ListVIewModel.swift */,
+				5C7860AD2468323700384B3D /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -184,6 +192,15 @@
 				5C6B5A0D246461AE0011900C /* MainCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		5CC4B3A22468113F0093EC3B /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				5CC4B39E246810CA0093EC3B /* KeychainWrapper.swift */,
+				5CC4B3A02468112F0093EC3B /* KeychainAccessibility.swift */,
+			);
+			path = Keychain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,10 +335,13 @@
 			files = (
 				5C48D0522466BC7900D2566A /* MovieTableViewCell.swift in Sources */,
 				5CF50CA12466A28200534A1A /* ListCoordinator.swift in Sources */,
+				5CC4B3A12468112F0093EC3B /* KeychainAccessibility.swift in Sources */,
 				5C48D04B2466B05600D2566A /* ListVIewModel.swift in Sources */,
+				5CC4B39F246810CA0093EC3B /* KeychainWrapper.swift in Sources */,
 				5CF50C9F24669BF300534A1A /* Model.swift in Sources */,
 				5C6B5A0C246460D10011900C /* Coordinator.swift in Sources */,
 				5C01AAA8246436E900DED6F6 /* LoginViewController.swift in Sources */,
+				5C7860AE2468323700384B3D /* LoginViewModel.swift in Sources */,
 				5C48D04F2466B5A200D2566A /* ListViewController.swift in Sources */,
 				5C01AAA4246436E900DED6F6 /* AppDelegate.swift in Sources */,
 				5C6B5A0E246461AE0011900C /* MainCoordinator.swift in Sources */,

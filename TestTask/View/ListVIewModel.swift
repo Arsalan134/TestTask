@@ -10,6 +10,8 @@ import Foundation
 
 class ListViewModel {
     
+    weak var coordinator: ListCoordinator?
+    
     private let url = "https://simplifiedcoding.net/demos/marvel/"
     var movies: [Movie] = []
     
