@@ -117,7 +117,7 @@ class LoginViewController: UIViewController {
     private let touchIDView: UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
-        v.backgroundColor = .red
+        v.backgroundColor = .secondarySystemBackground
         return v
     }()
     

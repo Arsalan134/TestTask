@@ -11,29 +11,17 @@ import Foundation
 class ListViewModel {
     
     weak var coordinator: ListCoordinator?
-    
-    private let url = "https://simplifiedcoding.net/demos/marvel/"
-    var movies: [Movie] = []
+    var dataModel: MovieDataModel?
     
     func logoutPressed() {
         coordinator?.logout()
     }
-    
-    func downloadMovies(completion: @escaping ([Movie]) -> Void) {
-        if let url = URL(string: url) {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                if let data = data {
-                    let jsonDecoder = JSONDecoder()
-                    do {
-                        self.movies = try jsonDecoder.decode([Movie].self, from: data)
-                        DispatchQueue.main.async {
-                            completion(self.movies)
-                        }
-                    } catch {
-                        print(error)
-                    }
-                }
-            }.resume()
-        }
+
+    func getData(completion: @escaping ([Movie]) -> Void) {
+        dataModel?.downloadMovies(completion: { movies in
+            completion(movies)
+        })
     }
+    
+    
 }

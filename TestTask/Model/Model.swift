@@ -21,6 +21,8 @@ struct Movie: Decodable {
     enum CodingKeys: String, CodingKey {
       case name, realname, team, firstAppearance = "firstappearance", createdBy = "createdby", publisher, imageURL = "imageurl", bio
     }
+    
+    
 }
 
 

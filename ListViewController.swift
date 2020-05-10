@@ -30,7 +30,7 @@ class ListViewController: UIViewController {
         setupTableView()
         setupSearchBar()
         
-        listVM?.downloadMovies { [weak self] _ in
+        listVM?.getData { [weak self] _ in
             self?.tableView.reloadData()
         }
     }
@@ -70,18 +70,18 @@ class ListViewController: UIViewController {
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listVM?.movies.count ?? 0
+        return listVM?.dataModel?.movies.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MovieTableViewCell
-        cell.movie = listVM?.movies[indexPath.row]
+        cell.movie = listVM?.dataModel?.movies[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            self.listVM?.movies.remove(at: indexPath.row)
+            self.listVM?.dataModel?.movies.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }

@@ -24,6 +24,7 @@ class ListCoordinator: Coordinator {
     func start() {
         let vm = ListViewModel()
         vm.coordinator = self
+        vm.dataModel = MovieDataModel()
         
         let vc = ListViewController()
         vc.listVM = vm
