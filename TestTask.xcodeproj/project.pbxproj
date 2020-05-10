@@ -18,7 +18,7 @@
 		5C48D04F2466B5A200D2566A /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C48D04E2466B5A200D2566A /* ListViewController.swift */; };
 		5C48D0522466BC7900D2566A /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C48D0512466BC7900D2566A /* MovieTableViewCell.swift */; };
 		5C6B5A0C246460D10011900C /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6B5A0B246460D10011900C /* Coordinator.swift */; };
-		5C6B5A0E246461AE0011900C /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6B5A0D246461AE0011900C /* MainCoordinator.swift */; };
+		5C6B5A0E246461AE0011900C /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6B5A0D246461AE0011900C /* LoginCoordinator.swift */; };
 		5C7860AE2468323700384B3D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7860AD2468323700384B3D /* LoginViewModel.swift */; };
 		5CC4B39F246810CA0093EC3B /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC4B39E246810CA0093EC3B /* KeychainWrapper.swift */; };
 		5CC4B3A12468112F0093EC3B /* KeychainAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC4B3A02468112F0093EC3B /* KeychainAccessibility.swift */; };
@@ -61,7 +61,7 @@
 		5C48D04E2466B5A200D2566A /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = SOURCE_ROOT; };
 		5C48D0512466BC7900D2566A /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		5C6B5A0B246460D10011900C /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		5C6B5A0D246461AE0011900C /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		5C6B5A0D246461AE0011900C /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		5C7860AD2468323700384B3D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		5CC4B39E246810CA0093EC3B /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		5CC4B3A02468112F0093EC3B /* KeychainAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainAccessibility.swift; sourceTree = "<group>"; };
@@ -189,7 +189,7 @@
 			children = (
 				5C6B5A0B246460D10011900C /* Coordinator.swift */,
 				5CF50CA02466A28200534A1A /* ListCoordinator.swift */,
-				5C6B5A0D246461AE0011900C /* MainCoordinator.swift */,
+				5C6B5A0D246461AE0011900C /* LoginCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -344,7 +344,7 @@
 				5C7860AE2468323700384B3D /* LoginViewModel.swift in Sources */,
 				5C48D04F2466B5A200D2566A /* ListViewController.swift in Sources */,
 				5C01AAA4246436E900DED6F6 /* AppDelegate.swift in Sources */,
-				5C6B5A0E246461AE0011900C /* MainCoordinator.swift in Sources */,
+				5C6B5A0E246461AE0011900C /* LoginCoordinator.swift in Sources */,
 				5C01AAA6246436E900DED6F6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

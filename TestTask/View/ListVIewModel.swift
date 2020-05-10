@@ -15,6 +15,10 @@ class ListViewModel {
     private let url = "https://simplifiedcoding.net/demos/marvel/"
     var movies: [Movie] = []
     
+    func logoutPressed() {
+        coordinator?.logout()
+    }
+    
     func downloadMovies(completion: @escaping ([Movie]) -> Void) {
         if let url = URL(string: url) {
             URLSession.shared.dataTask(with: url) { data, response, error in

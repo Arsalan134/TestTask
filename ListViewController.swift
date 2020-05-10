@@ -12,12 +12,12 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class ListViewController: UIViewController {
-        
-    var listVM = ListViewModel()
     
-    lazy var tableView = UITableView()
+    var listVM: ListViewModel?
     
-    let searchController = UISearchController(searchResultsController: nil)
+    private lazy var tableView = UITableView()
+    
+    private let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class ListViewController: UIViewController {
         setupTableView()
         setupSearchBar()
         
-        listVM.downloadMovies { [weak self] _ in
+        listVM?.downloadMovies { [weak self] _ in
             self?.tableView.reloadData()
         }
     }
@@ -41,7 +41,7 @@ class ListViewController: UIViewController {
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
     }
-    
+
     private func setupTableView() {
         view.addSubview(tableView)
         
@@ -61,7 +61,7 @@ class ListViewController: UIViewController {
     }
     
     @objc func logout() {
-        listVM.coordinator?.logout()
+        listVM?.logoutPressed()
     }
     
     
@@ -70,18 +70,18 @@ class ListViewController: UIViewController {
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listVM.movies.count
+        return listVM?.movies.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MovieTableViewCell
-        cell.movie = listVM.movies[indexPath.row]
+        cell.movie = listVM?.movies[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            self.listVM.movies.remove(at: indexPath.row)
+            self.listVM?.movies.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
@@ -94,6 +94,6 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        //TODO:- Salam
+        //TODO:- Search Functionality
     }
 }

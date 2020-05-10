@@ -11,7 +11,7 @@ import UIKit
 
 class ListCoordinator: Coordinator {
     
-    weak var parentCoordinator: MainCoordinator?
+    weak var parentCoordinator: LoginCoordinator?
     
     var childCoordinators = [Coordinator]()
     
@@ -22,14 +22,17 @@ class ListCoordinator: Coordinator {
     }
     
     func start() {
+        let vm = ListViewModel()
+        vm.coordinator = self
+        
         let vc = ListViewController()
-        vc.listVM.coordinator = self
+        vc.listVM = vm
         navigationController.viewControllers = [vc]
     }
     
     func logout() {
         let vc = LoginViewController()
-        vc.loginVM.coordinator = parentCoordinator
+        vc.loginVM?.coordinator = parentCoordinator
         navigationController.viewControllers = [vc]
     }
     

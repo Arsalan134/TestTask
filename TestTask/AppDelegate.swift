@@ -17,13 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // Create test users
-        KeychainWrapper.standard.set("password1", forKey: "user1Pasword")
-        KeychainWrapper.standard.set("password2", forKey: "user2Pasword")
-        KeychainWrapper.standard.set("password3", forKey: "user3Pasword")
+        KeychainWrapper.standard.set("password1", forKey: "user1Password")
+        KeychainWrapper.standard.set("password2", forKey: "user2Password")
+        KeychainWrapper.standard.set("password3", forKey: "user3Password")
         
         KeychainWrapper.standard.set("user1", forKey: "user1Login")
         KeychainWrapper.standard.set("user2", forKey: "user2Login")
         KeychainWrapper.standard.set("user3", forKey: "user3Login")
+        
+        KeychainWrapper.standard.set("user1", forKey: "lastLoggedUser")
         
         return true
     }

@@ -10,7 +10,7 @@ import Foundation
 import LocalAuthentication
 import UIKit
 
-class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
+class LoginCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     
     var childCoordinators = [Coordinator]()
     
@@ -22,8 +22,13 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     
     func start() {
         navigationController.delegate = self
+        
+        let vm = LoginViewModel()
+        vm.coordinator = self
+        
         let vc = LoginViewController()
-        vc.loginVM.coordinator = self
+        vc.loginVM = vm
+        
         navigationController.pushViewController(vc, animated: true)
     }
     
@@ -43,8 +48,8 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         child.start()
     }
     
-    func unsuccessfullyLoggedin() {
-        let ac = UIAlertController(title: "Authentication failed", message: "Sorry!", preferredStyle: .alert)
+    func unsuccessfullyLoggedIn(error: String?) {
+        let ac = UIAlertController(title: "Authentication Failed", message: error, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         navigationController.viewControllers.first?.present(ac, animated: true)
     }
@@ -55,8 +60,10 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         if navigationController.viewControllers.contains(fromVIewController) { return }
         
         if let listViewController = fromVIewController as? ListViewController {
-            childDidFinish(listViewController.listVM.coordinator)
+            childDidFinish(listViewController.listVM?.coordinator)
         }
     }
     
 }
+
+

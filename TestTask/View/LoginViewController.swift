@@ -10,7 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    lazy var loginVM = LoginViewModel()
+    var loginVM: LoginViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +34,8 @@ class LoginViewController: UIViewController {
         usernameTextField.returnKeyType = .next
         passwordTextField.returnKeyType = .done
         
+        usernameTextField.text = loginVM?.lastLoggedUsername()
+        
         NSLayoutConstraint.activate([
             usernameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             usernameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -52,7 +54,7 @@ class LoginViewController: UIViewController {
     
     private func setupTouchIDView() {
         view.addSubview(touchIDView)
-
+        
         touchIDView.addSubview(touchIDInfoLabel)
         touchIDView.addSubview(touchIDSwitch)
         
@@ -129,6 +131,7 @@ class LoginViewController: UIViewController {
     private let touchIDSwitch: UISwitch = {
         let s = UISwitch()
         s.translatesAutoresizingMaskIntoConstraints = false
+        s.isOn = true
         return s
     }()
     
@@ -143,23 +146,30 @@ class LoginViewController: UIViewController {
     }()
     
     @objc private func loginPressed() {
-        loginVM.loginPressed()
+        loginVM?.loginPressed(with: touchIDSwitch.isOn, username: usernameTextField.text, password: passwordTextField.text)
     }
     
 }
 
 extension LoginViewController: UITextFieldDelegate {
-   
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case usernameTextField:
-            usernameTextField.resignFirstResponder()
             passwordTextField.becomeFirstResponder()
         default:
             passwordTextField.resignFirstResponder()
+            loginVM?.loginPressed(with: touchIDSwitch.isOn, username: usernameTextField.text, password: passwordTextField.text)
         }
         return true
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == usernameTextField {
+            touchIDSwitch.isOn = false
+        }
+    }
+    
 }
 
 extension LoginViewController {
