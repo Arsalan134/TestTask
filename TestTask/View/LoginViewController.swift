@@ -90,7 +90,7 @@ class LoginViewController: UIViewController {
         NSLayoutConstraint.activate([
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-            loginButton.topAnchor.constraint(equalTo: touchIDView.bottomAnchor, constant: 60),
+            loginButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
             loginButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
