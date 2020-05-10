@@ -37,6 +37,8 @@ class LoginViewModel {
         return KeychainWrapper.standard.string(forKey: "lastLoggedUser")
     }
     
+    /// Saves last user to a keychain
+    /// - Parameter username: username of a user
     private func saveLastLoggedUsername(_ username: String) {
         KeychainWrapper.standard.set(username, forKey: "lastLoggedUser")
     }

@@ -30,7 +30,7 @@ class ListViewController: UIViewController {
         setupTableView()
         setupSearchBar()
         
-        listVM?.getData { [weak self] _ in
+        listVM?.getMovies { [weak self] _ in
             self?.tableView.reloadData()
         }
     }

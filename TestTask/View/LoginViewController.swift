@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
         setupView()
     }
     
+    /// Setups views
     private func setupView() {
         setupTextFields()
         setupTouchIDView()

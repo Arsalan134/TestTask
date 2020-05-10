@@ -17,7 +17,7 @@ class ListViewModel {
         coordinator?.logout()
     }
 
-    func getData(completion: @escaping ([Movie]) -> Void) {
+    func getMovies(completion: @escaping ([Movie]) -> Void) {
         dataModel?.downloadMovies(completion: { movies in
             completion(movies)
         })
