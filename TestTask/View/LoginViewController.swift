@@ -160,7 +160,6 @@ extension LoginViewController: UITextFieldDelegate {
             passwordTextField.becomeFirstResponder()
         default:
             passwordTextField.resignFirstResponder()
-            loginVM?.loginPressed(with: touchIDSwitch.isOn, username: usernameTextField.text, password: passwordTextField.text)
         }
         return true
     }

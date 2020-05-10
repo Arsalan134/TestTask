@@ -11,8 +11,6 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -24,8 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         KeychainWrapper.standard.set("user1", forKey: "user1Login")
         KeychainWrapper.standard.set("user2", forKey: "user2Login")
         KeychainWrapper.standard.set("user3", forKey: "user3Login")
-        
-        KeychainWrapper.standard.set("user1", forKey: "lastLoggedUser")
+    
         
         return true
     }
