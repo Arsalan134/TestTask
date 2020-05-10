@@ -54,10 +54,10 @@ class LoginViewModel {
                 
                 DispatchQueue.main.async {
                     if success {
-                        self?.coordinator?.successfullyLoggedIn()
                         if let username = username {
                             self?.saveLastLoggedUsername(username)
                         }
+                        self?.coordinator?.successfullyLoggedIn()
                     }
                 }
             }

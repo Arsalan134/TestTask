@@ -99,6 +99,7 @@ class LoginViewController: UIViewController {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.placeholder = "Username"
+        tf.autocapitalizationType = .none
         tf.backgroundColor = .secondarySystemBackground
         return tf
     }()

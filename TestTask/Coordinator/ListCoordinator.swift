@@ -31,8 +31,11 @@ class ListCoordinator: Coordinator {
     }
     
     func logout() {
+        let vm = LoginViewModel()
+        vm.coordinator = parentCoordinator
+        
         let vc = LoginViewController()
-        vc.loginVM?.coordinator = parentCoordinator
+        vc.loginVM = vm
         navigationController.viewControllers = [vc]
     }
     
